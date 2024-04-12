@@ -261,40 +261,6 @@ export const Tasks: React.FC = () => {
       )
     );
   };
-  const checkOverdueTasks = useCallback(
-    (tasks: Task[]) => {
-      const overdueTasks = tasks.filter((task) => {
-        return task.deadline && new Date() > new Date(task.deadline) && !task.done;
-      });
-
-      if (overdueTasks.length > 0) {
-        const taskNames = overdueTasks.map((task) => task.name);
-
-        showToast(
-          <div translate="no" style={{ wordBreak: "break-word" }}>
-            <b translate="yes">Overdue task{overdueTasks.length > 1 && "s"}: </b>
-            {listFormat.format(taskNames)}
-          </div>,
-          {
-            type: "error",
-            disableVibrate: true,
-            duration: 3400,
-            icon: <RingAlarm animate sx={{ color: ColorPalette.red }} />,
-            style: {
-              borderColor: ColorPalette.red,
-              boxShadow: user.settings[0].enableGlow ? `0 0 18px -8px ${ColorPalette.red}` : "none",
-            },
-          }
-        );
-      }
-    },
-    [listFormat, user.settings]
-  );
-
-  useEffect(() => {
-    checkOverdueTasks(user.tasks);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <>
@@ -351,7 +317,6 @@ export const Tasks: React.FC = () => {
                 <CategoryBadge
                   key={cat.id}
                   category={cat}
-
                   list={"true"}
                   label={
                     <div>
