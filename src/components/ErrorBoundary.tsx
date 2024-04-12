@@ -1,6 +1,5 @@
 import React, { ErrorInfo } from "react";
 import { StyledLink } from "../styles";
-import { Emoji } from "emoji-picker-react";
 import { Accordion, AccordionDetails, AccordionSummary, Button, Typography } from "@mui/material";
 import { exportTasksToJson, getFontColor, showToast } from "../utils";
 import {
@@ -57,9 +56,6 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
         <div>
           <ErrorHeader>
             <span>Oops! An error occurred.&nbsp;</span>
-            <span>
-              <Emoji size={38} unified="1f644" />
-            </span>
           </ErrorHeader>
           <div
             style={{
